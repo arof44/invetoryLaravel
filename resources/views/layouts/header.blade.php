@@ -48,7 +48,6 @@
                  <!-- User profile and search -->
                  <!-- ============================================================== -->
                  <li class="nav-item dropdown">
-                     <i class='fas fa-bell'></i>
                      <a href="#" class="btn btn-info btn-sm text-white" onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
                          <i class="fa fa-sign-out"></i>&nbsp; Keluar sistem

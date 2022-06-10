@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Telegram\Telegram;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
 
@@ -44,8 +45,9 @@ class TelegramNotification extends Notification
     public function toTelegram($notifiable)
     {
         return TelegramMessage::create()
-            ->to($notifiable->telegram_chat_id)
-            ->content($this->message);
+        ->to($notifiable->telegramid)
+        ->content("*".$notifiable->notice."*\n".$notifiable->noticedes)
+        ->button('View Detail', $notifiable ->noticelink);
     }
 
     /**

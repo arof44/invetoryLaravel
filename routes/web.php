@@ -10,6 +10,8 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Auth\LoginController;
+use \App\Notifications\TelegramNotification;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +31,10 @@ Route::get('/', function () {
 //     return view('dashboard.home');
 // });
 
+//telegram
+// Route::post('/', function () {
+//      Auth::user()->notify(new TelegramNotification());
+// });
 
 Auth::routes();
 Route::post('/daftar', [LoginController::class, 'daftarNasabah']);
@@ -78,3 +84,5 @@ Route::post('/update_create_keluar/{id}', [TransaksiController::class, 'updateTr
 //laporan
 Route::get('/laporan', [TransaksiController::class, 'report']);
 Route::post('/laporan_report/{type}', [TransaksiController::class, 'getReport']);
+
+

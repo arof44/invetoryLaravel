@@ -4,14 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notifications\TelegramNotification;
+use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
+use PhpParser\Builder\FunctionLike;
+use TelegramNotifications\TelegramChannel;
+use TelegramNotifications\Messages\TelegramMessage;
 
-class TelegramNotificationController extends Controller
+class TelegramNotificationController extends Notification
 {
-    public function send(Request $request)
-    {
-        $user = auth()->user();
-        $user->notify(new TelegramNotification($request->notification));
+    use Queueable;
 
-        return back();
+    public function via(Request $request)
+    {
+        return [TelegramChannel::class];
+    }
+
+    public function toTelegram()
+    {
+        return (new TelegramMessage())->text('Hello, world!');
     }
 }
